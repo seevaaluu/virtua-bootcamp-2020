@@ -35,7 +35,9 @@
                             <td>{{ $book->name }}</td>
                             <td>{{ $book->author}}</td>
                             <td>{{ $book->stock }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{{route('books.edit', $book->id)}}" class="btn btn-outline-info">Editar</a>
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>

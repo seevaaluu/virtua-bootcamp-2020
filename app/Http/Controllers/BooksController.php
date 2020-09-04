@@ -72,7 +72,8 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = book::findOrFail($id);
+        return view('books.edit')->with('book', $book);
     }
 
     /**
@@ -84,7 +85,20 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "name" => "required",
+            "author" => "required",
+            "stock" => "required|numeric|min:1|max:25"
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->stock = $request->stock;
+        $book->save();
+
+
+        return "Se actualizó con éxito";
     }
 
     /**
