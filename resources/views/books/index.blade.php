@@ -36,7 +36,12 @@
                             <td>{{ $book->author}}</td>
                             <td>{{ $book->stock }}</td>
                             <td>
-                                <a href="{{route('books.edit', $book->id)}}" class="btn btn-outline-info">Editar</a>
+                                <a href="{{route('books.edit', $book->id)}}" class="btn btn-sm btn-outline-info">Editar</a>
+                                <form action="{{route('books.destroy', $book->id)}}" method="post">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <input type="submit" class="btn btn-sm btn-outline-danger" value="Eliminar">
+                                </form>
                             </td>
                         </tr>
                         @endforeach

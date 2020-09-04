@@ -109,6 +109,9 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->delete();
+
+        return "Se eliminó correctamente";
     }
 }
