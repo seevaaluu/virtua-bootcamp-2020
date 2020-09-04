@@ -14,7 +14,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::paginate(10);
+        $books = Book::orderBy('id','desc')->paginate(10);
 
         return view('books.index')->with('books', $books);
     }
@@ -37,7 +37,20 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => "required",
+            "author" => "required",
+            "stock" => "required|numeric|min:1|max:25"
+        ]); 
+
+        $book = new Book;
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->stock = $request->stock;
+        $book->save(); 
+
+        return "El libro se ha creado correctamente";
+
     }
 
     /**

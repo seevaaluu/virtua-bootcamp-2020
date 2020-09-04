@@ -20,5 +20,5 @@ Route::get('/hola_mundo', function() {
 });
 
 Route::get('/books', 'BooksController@index')->name('books.index');
-
 Route::get('/books/create', 'BooksController@create')->name('books.create');
+Route::post('/books', 'BooksController@store')->name('books.store');

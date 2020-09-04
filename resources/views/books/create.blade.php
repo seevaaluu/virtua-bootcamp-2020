@@ -20,7 +20,8 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <form action="">
+                        <form action="{{route('books.store')}}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label>Nombre del libro</label>
                                 <input class="form-control" type="text" name="name">
@@ -31,19 +32,26 @@
                             </div>
                             <div class="form-group">
                                 <label>Cantidad disponible</label>
-                                <input class="form-control" min="1" type="number" name="stock">
+                                <input class="form-control" type="number" name="stock">
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-success" type="button" value="Guardar">
+                                <input class="btn btn-success" type="submit" value="Guardar">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            @if($errors->any()) 
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
+    <!-- Optional JavaScript --
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
